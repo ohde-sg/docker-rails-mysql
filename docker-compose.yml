@@ -1,14 +1,14 @@
 version: '2'
 services:
-  db:
-    image: mysql:5.7
+  myappdb:
+    build: mysql
     volumes:
-      - db:/var/lib/mysql
+      - myappdb:/var/lib/mysql
       - ./mysql.conf:/etc/mysql/conf.d
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      #MYSQL_USER: root
+      #MYSQL_PASSWORD: root
   
   web:
     build: .
@@ -18,6 +18,6 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - myappdb
 volumes:
-  db:
+  myappdb:
